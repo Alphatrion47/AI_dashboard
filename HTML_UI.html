@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Detail Extractor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        .emoji {
+            font-size: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+    <script>
+        function highlightSentiment(sentiment) {
+            let positive = ["Russ", "Robert Churchill", "Jonathan"];
+            let neutral = ["Robert Bell"];
+            let negative = ["Molly"];
+            
+            document.querySelectorAll(".summary").forEach(el => el.classList.remove("highlight"));
+            
+            let targetList = [];
+            if (sentiment === 'happy') targetList = positive;
+            else if (sentiment === 'neutral') targetList = neutral;
+            else if (sentiment === 'sad') targetList = negative;
+            
+            targetList.forEach(name => {
+                let element = document.getElementById(name);
+                if (element) element.classList.add("highlight");
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>AI Detail Extractor</h1>
+    <label for="category">Select Category:</label>
+    <select id="category" onchange="updateCategory()">
+        <option value="Cost & Control">Cost & Control</option>
+        <option value="Quality">Quality</option>
+        <option value="Delivery">Delivery</option>
+        <option value="Communication & Governance">Communication & Governance</option>
+        <option value="Management">Management</option>
+    </select>
+    
+    <h3 style="margin-top: 30px;">Sentiment Analysis:</h3>
+    <span class="emoji" onclick="highlightSentiment('happy')">😊</span>
+    <span class="emoji" onclick="highlightSentiment('neutral')">😐</span>
+    <span class="emoji" onclick="highlightSentiment('sad')">😞</span>
+    
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Customer Prompted View</th>
+        </tr>
+        <tr>
+            <td><span id="selectedCategory">Cost & Control</span></td>
+            <td>
+                <p id="Russ" class="summary"><strong>Russ:</strong> Value for Money - I am not convinced we have people that are fully utilised - some of the team that I am paying for seem to get pulled over into other initiatives (like ways of working)</p>
+                <p id="Robert Churchill" class="summary"><strong>Robert Churchill:</strong> Cost Control - TCS provide at their costs additional skills and resources to help support CRM area</p>
+                <p id="Robert Bell" class="summary"><strong>Robert Bell:</strong> No specific issues</p>
+                <p id="Jonathan" class="summary"><strong>Jonathan:</strong> Cost Control - Additional resource has been added at no extra cost to maintain service.</p>
+                <p id="Molly" class="summary"><strong>Molly:</strong> Working closely with TCS on the performance issues and understanding the reasons for reduction in teams.</p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
