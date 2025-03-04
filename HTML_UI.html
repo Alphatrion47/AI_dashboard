@@ -46,6 +46,11 @@
                 if (element) element.classList.add("highlight");
             });
         }
+
+        function updateCategory() {
+            let selectedCategory = document.getElementById("category").value;
+            document.getElementById("selectedCategory").textContent = selectedCategory;
+        }
     </script>
 </head>
 <body>
